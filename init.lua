@@ -15,17 +15,35 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 vim.opt.showcmd = true
 
--- vim.g.mapleader = " "
-local map = vim.keymap.set
+vim.g.mapleader = " "
 
-map("n", "j", "h")
-map("n", "k", "j")
-map("n", "i", "k")
-map("n", "h", "i")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-map("n", "<A-i>", "4k", opt)
-map("n", "<A-k>", "4j", opt)
-map("n", "<A-j>", "9h", opt)
-map("n", "<A-l>", "9l", opt)
+require('lazy').setup({
+    "nvim-lualine/lualine.nvim",
+    'nvim-tree/nvim-web-devicons',
+    'Mofiqul/vscode.nvim'
+})
+require('core.keymap')
+require('lualine').setup({
+    options = {
+        -- ...
+        theme = 'vscode'
+        -- ...
+    }
+})
 
-map({"n", "v", "i"}, "<A-d>", "<ESC>")
+require('vscode').load('dark')
+
+
