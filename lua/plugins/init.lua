@@ -14,6 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     "nvim-lualine/lualine.nvim",
     'nvim-tree/nvim-web-devicons',
-    'Mofiqul/vscode.nvim'
+    'Mofiqul/vscode.nvim',
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
 })
-require('lualine')

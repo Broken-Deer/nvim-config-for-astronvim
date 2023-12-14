@@ -16,3 +16,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.showcmd = true
 
 vim.g.mapleader = " "
+
+vim.opt.scrolloff = 5
+vim.opt.sidescrolloff = 5
