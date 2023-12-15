@@ -36,4 +36,6 @@ require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim" },
     },
     "mg979/vim-visual-multi",
+    "MattesGroeger/vim-bookmarks",
+    "tom-anders/telescope-vim-bookmarks.nvim",
 })
