@@ -3,20 +3,20 @@ require("mason").setup({
         icons = {
             package_installed = "✓",
             package_pending = "➜",
-            package_uninstalled = "✗"
-        }
-    }
+            package_uninstalled = "✗",
+        },
+    },
 })
 require("mason-lspconfig").setup()
 
-require('mason-tool-installer').setup {
+require("mason-tool-installer").setup({
 
     -- a list of all tools you want to ensure are installed upon
     -- start
     ensure_installed = {
-        'lua-language-server',
-        'stylua',
-        'rust-analyzer'
+        "lua-language-server",
+        "stylua",
+        -- "rust-analyzer",
     },
 
     -- -- if set to true this will check each tool for updates. If updates
@@ -44,4 +44,4 @@ require('mason-tool-installer').setup {
     -- -- effect when running manually via ':MasonToolsInstall' etc....
     -- -- Default: nil
     -- debounce_hours = 5, -- at least 5 hours between attempts to install/update
-}
+})
