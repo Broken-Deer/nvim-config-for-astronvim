@@ -48,4 +48,10 @@ require("lazy").setup({
 
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
+    {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+        opts = {},
+    },
+    "mfussenegger/nvim-lint",
 })
