@@ -16,6 +16,7 @@ require("mason-tool-installer").setup({
         "lua-language-server",
         "stylua",
         "eslint_d",
+        "prettierd",
         -- "rust-analyzer",
     },
 

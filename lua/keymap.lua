@@ -14,7 +14,6 @@ map({ "n", "v" }, "<A-l>", "9l")
 map("n", "k", [[v:count?'j':'gj']], { noremap = true, expr = true })
 map("n", "i", [[v:count?'k':'gk']], { noremap = true, expr = true })
 
-map({ "n", "v", "i" }, "<A-d>", "<ESC>")
 map("n", "<C-a>", "ggVG")
 map({ "n", "x" }, "<leader>p", '"0p')
 
