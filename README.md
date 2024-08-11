@@ -1,18 +1,8 @@
-# Magical-Deer's AstroNvim Configuration
+# AstroNvim Template
 
-A user configuration for [AstroNvim](https://github.com/AstroNvim/AstroNvim)
+**NOTE:** This is for AstroNvim v4+
 
-## ⚡ Requirements
-- Nerd Fonts (Optional with manual intervention: See Recipes/Customizing Icons) [1]
-- Neovim v0.8+ (Not including nightly)
-- Tree-sitter CLI (Note: This is only necessary if you want to use auto_install feature with Treesitter)
-- ripgrep - live grep telescope search (<leader>fw)
-- lazygit - git ui toggle terminal (<leader>tl or <leader>gg)
-- go DiskUsage() - disk usage toggle terminal (<leader>tu)
-- bottom - process viewer toggle terminal (<leader>tt)
-- Python - python repl toggle terminal (<leader>tp)
-- Node - Node is needed for a lot of the LSPs, and for the node repl toggle terminal (<leader>tn)
-
+A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 
 ## 🛠️ Installation
 
@@ -21,12 +11,8 @@ A user configuration for [AstroNvim](https://github.com/AstroNvim/AstroNvim)
 ```shell
 mv ~/.config/nvim ~/.config/nvim.bak
 mv ~/.local/share/nvim ~/.local/share/nvim.bak
-```
-
-#### Clone AstroNvim
-
-```shell
-git clone https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
 
 #### Create a new user repository from this template
@@ -38,7 +24,7 @@ You can also just clone this repository directly if you do not want to track you
 #### Clone the repository
 
 ```shell
-git clone https://github.com/Broken-Deer/nvim-config ~/.config/nvim/lua/user
+git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
 ```
 
 #### Start Neovim
@@ -46,4 +32,3 @@ git clone https://github.com/Broken-Deer/nvim-config ~/.config/nvim/lua/user
 ```shell
 nvim
 ```
-
