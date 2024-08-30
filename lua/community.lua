@@ -4,9 +4,15 @@
 
 ---@type LazySpec
 return {
-  "AstroNvim/astrocommunity",
-  { import = "astrocommunity.pack.lua" },
-  { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.colorscheme.vscode-nvim" },
-  -- import/override with your plugins folder
+	"AstroNvim/astrocommunity",
+	{ import = "astrocommunity.pack.lua" },
+	{ import = "astrocommunity.colorscheme.catppuccin" },
+	{ import = "astrocommunity.colorscheme.vscode-nvim" },
+	{ import = "astrocommunity.pack.rust" },
+	{ import = "astrocommunity.pack.typescript" },
+	{ import = "astrocommunity.pack.typescript-deno" },
+	{ import = "astrocommunity.pack.cpp" },
+	{ import = "astrocommunity.pack.java" },
+	{ import = "astrocommunity.pack.vue" },
+	{ import = "astrocommunity.completion.codeium-nvim" },
 }

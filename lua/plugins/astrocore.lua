@@ -1,8 +1,7 @@
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
--- Configuration documentation can be found with `:h astrocore`
+--Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
-
 ---@type LazySpec
 return {
 	"AstroNvim/astrocore",
@@ -29,7 +28,7 @@ return {
 				number = true, -- sets vim.opt.number
 				spell = false, -- sets vim.opt.spell
 				signcolumn = "yes", -- sets vim.opt.signcolumn to yes
-				wrap = true, -- sets vim.opt.wrap
+				wrap = false, -- sets vim.opt.wrap
 			},
 			g = { -- vim.g.<key>
 				-- configure global vim variables (vim.g)
@@ -77,8 +76,81 @@ return {
 
 				-- setting a mapping to false will disable it
 				-- ["<C-S>"] = false,
-				["j"] = { [[v:count?'j':'gj']], desc = "" },
-				["k"] = { [[v:count?'k':'gk']], desc = "" },
+				["<Leader>c"] = {
+					function()
+						local bufs = vim.fn.getbufinfo({ buflisted = true })
+						require("astrocore.buffer").close(0)
+						if require("astrocore").is_available("alpha-nvim") and not bufs[2] then
+							require("alpha").start()
+						end
+					end,
+					desc = "Close buffer",
+				},
+				["`"] = { "~" },
+				[";"] = { ":" },
+
+				-- Movement
+				["u"] = { "k" },
+				["e"] = { "j" },
+				-- ["e"] = { [[v:count?'j':'gj']], desc = "" },
+				-- ["u"] = { [[v:count?'k':'gk']], desc = "" },
+				["n"] = { "h" },
+				["i"] = { "l" },
+				["U"] = { "5k" },
+				["E"] = { "5j" },
+				["N"] = { "0" },
+				["I"] = { "$" },
+				["h"] = { "e" },
+				["<C-U>"] = { "5<C-y>" },
+				["<C-E>"] = { "5<C-e>" },
+				["ci"] = { "cl" },
+				["cn"] = { "ch" },
+				["ck"] = { "ci" },
+				["c,."] = { "c%" },
+				["yh"] = { "ye" },
+				-- Actions
+				["l"] = { "u" },
+				["k"] = { "i" },
+				["K"] = { "I" },
+
+				-- Buffers FIXME:
+				["<C-W>"] = { "<Leader>c" },
+
+				-- Others
+				["<Leader>sw"] = { "<cmd>set wrap<CR>" },
+				["<C-A>"] = { "ggVG" },
+				["R"] = { ":Joshuto<CR>" },
+				["<Leader>r"] = { ":Joshuto<CR>", desc = "Joshuto" },
+				["J"] = { "K" },
+			},
+			v = {
+				["`"] = { "~" },
+				[";"] = { ":" },
+
+				-- Movement
+				["u"] = { "k" },
+				["e"] = { "j" },
+				-- ["j"] = { [[v:count?'j':'gj']], desc = "" },
+				-- ["k"] = { [[v:count?'k':'gk']], desc = "" },
+				["n"] = { "h" },
+				["i"] = { "l" },
+				["U"] = { "5k" },
+				["E"] = { "5j" },
+				["N"] = { "0" },
+				["I"] = { "$" },
+				["h"] = { "e" },
+				["<C-U>"] = { "5<C-y>" },
+				["<C-E>"] = { "5<C-e>" },
+				-- Actions
+				["k"] = { "i" },
+				["K"] = { "I" },
+				["<C-A>"] = { "<ESC>ggVG" },
+			},
+			i = {
+				["<c-a>"] = { "<ESC>A" },
+				["<c-k>"] = { "<ESC>I" },
+				["<c-y>"] = { "<ESC>A {}<ESC>i<CR><ESC>ko" },
+				["<c-v>"] = { "<ESC>pa" },
 			},
 		},
 	},
