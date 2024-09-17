@@ -94,7 +94,6 @@ return {
 					end,
 					desc = "Close buffer",
 				},
-				[";"] = { ":" },
 				["`"] = { "~" },
 				-- Neovide full screen
 				["<F11>"] = { "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
@@ -152,7 +151,6 @@ return {
 			},
 			v = {
 				["`"] = { "~" },
-				[";"] = { ":" },
 				-- Neovide full screen
 				["<F11>"] = { "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
 
