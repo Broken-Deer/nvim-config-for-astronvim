@@ -17,12 +17,12 @@ return {
 			pattern = "*",
 			callback = function()
 				vim.cmd([[
-hi! ScrollbarGitAdd guifg=#8CC85F
-hi! ScrollbarGitAddHandle guifg=#A0CF5D
-hi! ScrollbarGitChange guifg=#E6B450
-hi! ScrollbarGitChangeHandle guifg=#F0C454
-hi! ScrollbarGitDelete guifg=#F87070
-hi! ScrollbarGitDeleteHandle guifg=#FF7B7B ]])
+hi! ScrollbarGitAdd guifg=#a6e3a1
+hi! ScrollbarGitAddHandle guifg=#a6e3a1
+hi! ScrollbarGitChange guifg=#f9e2af
+hi! ScrollbarGitChangeHandle guifg=#f9e2af
+hi! ScrollbarGitDelete guifg=#f38ba8
+hi! ScrollbarGitDeleteHandle guifg=#f38ba8 ]])
 			end,
 			group = group,
 		})
@@ -32,7 +32,7 @@ hi! ScrollbarGitDeleteHandle guifg=#FF7B7B ]])
 			show = true,
 			handle = {
 				text = " ",
-				color = "#928374",
+				color = "#6c7086",
 				hide_if_all_visible = true,
 			},
 			marks = {
