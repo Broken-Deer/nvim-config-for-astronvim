@@ -10,11 +10,11 @@ return {
 		-- Configure core features of AstroNvim
 		features = {
 			large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-			autopairs = true, -- enable autopairs at start
-			cmp = true, -- enable completion at start
-			diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-			highlighturl = true, -- highlight URLs at start
-			notifications = true, -- enable notifications at start
+			autopairs = true,                              -- enable autopairs at start
+			cmp = true,                                    -- enable completion at start
+			diagnostics_mode = 3,                          -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+			highlighturl = true,                           -- highlight URLs at start
+			notifications = true,                          -- enable notifications at start
 		},
 		-- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
 		diagnostics = {
@@ -23,14 +23,14 @@ return {
 		},
 		-- vim options can be configured here
 		options = {
-			opt = { -- vim.opt.<key>
+			opt = {              -- vim.opt.<key>
 				relativenumber = true, -- sets vim.opt.relativenumber
-				number = true, -- sets vim.opt.number
-				spell = false, -- sets vim.opt.spell
+				number = true,     -- sets vim.opt.number
+				spell = false,     -- sets vim.opt.spell
 				scrolloff = 3,
 				sidescrolloff = 3,
 				signcolumn = "yes", -- sets vim.opt.signcolumn to yes
-				wrap = false, -- sets vim.opt.wrap
+				wrap = false,   -- sets vim.opt.wrap
 				showcmd = true,
 			},
 			g = { -- vim.g.<key>
@@ -113,6 +113,16 @@ return {
 				["<Leader>sw"] = { "<cmd>set wrap<CR>" },
 				["<C-A>"] = { "ggVG" },
 				["<A-o>"] = { "o<esc>k$" },
+				-- Windows
+				["<leader>w"] = { desc = "Window Move" },
+				["<leader>wk"] = { "<C-w>k" },
+				["<leader>wj"] = { "<C-w>j" },
+				["<leader>wh"] = { "<C-w>h" },
+				["<leader>wl"] = { "<C-w>l" },
+				["<up>"] = { "<cmd>res -1<CR>" },
+				["<down>"] = { "<cmd>res +1<CR>" },
+				["<left>"] = { "<cmd>vertical resize+1<CR>" },
+				["<right>"] = { "<cmd>vertical resize-1<CR>" },
 				-- Buffers
 				["<C-W>"] = { "<Leader>c" },
 				-- Others
