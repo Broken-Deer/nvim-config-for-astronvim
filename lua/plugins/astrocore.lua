@@ -33,19 +33,6 @@ return {
 				wrap = false, -- sets vim.opt.wrap
 				showcmd = true,
 			},
-			g = { -- vim.g.<key>
-				-- configure global vim variables (vim.g)
-				-- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
-				-- This can be found in the `lua/lazy_setup.lua` file
-				neovide_text_gamma = 0.8,
-				neovide_text_contrast = 0.8,
-				neovide_transparency = 0.9,
-				neovide_hide_mouse_when_typing = true,
-				neovide_cursor_vfx_mode = "torpedo",
-			},
-			o = {
-				guifont = "FiraCode Nerd Font Mono:h14",
-			},
 		},
 		-- Mappings can be configured through AstroCore as well.
 		-- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
@@ -86,7 +73,17 @@ return {
 				-- ["<C-S>"] = false,
 				["<Leader>c"] = {
 					function()
-						local bufs = vim.fn.getbufinfo({ buflisted = true })
+						local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+						require("astrocore.buffer").close(0)
+						if require("astrocore").is_available("alpha-nvim") and not bufs[2] then
+							require("alpha").start()
+						end
+					end,
+					desc = "Close buffer",
+				},
+				["<C-w>"] = {
+					function()
+						local bufs = vim.fn.getbufinfo({ buflisted = 1 })
 						require("astrocore.buffer").close(0)
 						if require("astrocore").is_available("alpha-nvim") and not bufs[2] then
 							require("alpha").start()
@@ -123,8 +120,6 @@ return {
 				["<down>"] = { "<cmd>res +1<CR>" },
 				["<left>"] = { "<cmd>vertical resize+1<CR>" },
 				["<right>"] = { "<cmd>vertical resize-1<CR>" },
-				-- Buffers
-				["<C-W>"] = { "<Leader>c" },
 				-- Others
 				["<Leader>k"] = { "K" },
 

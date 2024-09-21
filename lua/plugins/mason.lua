@@ -8,11 +8,14 @@ return {
 		-- overrides `require("mason-lspconfig").setup(...)`
 		opts = {
 			ensure_installed = {
-				"lua_ls",
 				"html",
 				"cssls",
 				"eslint",
+				"tsserver",
+				"pylyzer",
+				"lua_ls",
 				"rust_analyzer",
+				"volar",
 			},
 		},
 	},

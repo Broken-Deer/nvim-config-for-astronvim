@@ -7,10 +7,6 @@ return {
 			icons = {
 				VimIcon = "",
 				ScrollText = "",
-				GitBranch = "",
-				GitAdd = "",
-				GitChange = "",
-				GitDelete = "",
 			},
 			-- modify variables used by heirline but not defined in the setup call directly
 			status = {
@@ -18,7 +14,6 @@ return {
 				separators = {
 					left = { "", "" }, -- separator for the left side of the statusline
 					right = { "", "" }, -- separator for the right side of the statusline
-					tab = { "", "" },
 					left_only = { "", "" },
 					right_only = { "", "" },
 				},
@@ -26,6 +21,10 @@ return {
 				colors = function(hl)
 					local get_hlgroup = require("astroui").get_hlgroup
 					-- use helper function to get highlight group properties
+					local comment_fg = get_hlgroup("Comment").fg
+					hl.git_added = comment_fg
+					hl.git_changed = comment_fg
+					hl.git_removed = comment_fg
 					hl.blank_bg = get_hlgroup("Folded").fg
 					hl.file_info_bg = get_hlgroup("Visual").bg
 					hl.nav_icon_bg = get_hlgroup("String").fg
@@ -48,62 +47,6 @@ return {
 		"rebelot/heirline.nvim",
 		opts = function(_, opts)
 			local status = require("astroui.status")
-			opts.winbar = { -- create custom winbar
-				-- store the current buffer number
-				init = function(self)
-					self.bufnr = vim.api.nvim_get_current_buf()
-				end,
-				fallthrough = false, -- pick the correct winbar based on condition
-				-- inactive winbar
-				{
-					condition = function()
-						return not status.condition.is_active()
-					end,
-					-- show the path to the file relative to the working directory
-					status.component.separated_path({
-						path_func = status.provider.filename({ modify = ":.:h" }),
-					}),
-					-- add the file name and icon
-					status.component.file_info({
-						file_icon = {
-							hl = status.hl.file_icon("winbar"),
-							padding = { left = 0 },
-						},
-						filename = {},
-						filetype = false,
-						file_modified = false,
-						file_read_only = false,
-						hl = status.hl.get_attributes("winbarnc", true),
-						surround = false,
-						update = "BufEnter",
-					}),
-				},
-				-- active winbar
-				{
-					-- show the path to the file relative to the working directory
-					status.component.separated_path({
-						path_func = status.provider.filename({ modify = ":.:h" }),
-					}),
-					-- add the file name and icon
-					status.component.file_info({ -- add file_info to breadcrumbs
-						file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
-						filename = {},
-						filetype = false,
-						file_modified = false,
-						file_read_only = false,
-						hl = status.hl.get_attributes("winbar", true),
-						surround = false,
-						update = "BufEnter",
-					}),
-					-- show the breadcrumbs
-					status.component.breadcrumbs({
-						icon = { hl = true },
-						hl = status.hl.get_attributes("winbar", true),
-						prefix = true,
-						padding = { left = 0 },
-					}),
-				},
-			}
 			opts.statusline = {
 				-- default highlight for the entire statusline
 				hl = { fg = "fg", bg = "bg" },
@@ -127,27 +70,26 @@ return {
 						end,
 					},
 				}),
-				-- we want an empty space here so we can use the component builder to make a new section with just an empty string
 				status.component.builder({
 					{ provider = " " },
-					-- define the surrounding separator and colors to be used inside of the component
-					-- and the color to the right of the separated out section
-					-- surround = {
-					-- color = function()
-					-- 	return { main = status.hl.mode_bg(), right = "blank_bg" }
-					-- end,
-					-- },
 				}),
 				-- add a component for the current git branch if it exists and use no separator for the sections
 				status.component.git_branch({
 					git_branch = { padding = { left = 1 } },
-					surround = { separator = "none" },
+					surround = { separator = "left", color = "file_info_bg" },
+				}),
+				status.component.builder({
+					{ provider = " " },
+				}),
+				-- add a component for the current diagnostics if it exists and use the right separator for the section
+				status.component.diagnostics({
+					surround = { separator = "left", color = "file_info_bg" },
 				}),
 				-- add a component for the current git diff if it exists and use no separator for the sections
-				status.component.git_diff({
-					padding = { left = 1 },
-					surround = { separator = "none" },
-				}),
+				-- status.component.git_diff({
+				-- 	padding = { left = 1 },
+				-- 	surround = { separator = "none" },
+				-- }),
 				-- fill the rest of the statusline
 				-- the elements after this will appear in the middle of the statusline
 				status.component.fill(),
@@ -158,16 +100,6 @@ return {
 					lsp_client_names = false,
 					surround = { separator = "none", color = "bg" },
 				}),
-				-- add a component for the current diagnostics if it exists and use the right separator for the section
-				status.component.diagnostics({ surround = { separator = "right" }, padding = { right = 1 } }),
-				-- add a component to display LSP clients, disable showing LSP progress, and use the right separator
-				status.component.lsp({
-					lsp_progress = false,
-					padding = { right = 1 },
-					surround = { separator = "right" },
-				}),
-				-- NvChad has some nice icons to go along with information, so we can create a parent component to do this
-				-- all of the children of this table will be treated together as a single component
 				{
 					flexible = 1,
 					{
@@ -184,7 +116,7 @@ return {
 								fname = function(nr)
 									return vim.fn.getcwd(nr)
 								end,
-								padding = { left = 1, right = 1 },
+								padding = { left = 1, right = 0 },
 							},
 							-- disable all other elements of the file_info component
 							filetype = false,
@@ -204,12 +136,34 @@ return {
 					},
 				},
 				status.component.builder({ provider = " " }),
+				{
+					status.component.builder({
+						{ provider = require("astroui").get_icon("ScrollText") },
+						surround = { separator = "left_only", color = "file_info_bg" },
+					}),
+					-- add a navigation component and just display the percentage of progress in the file
+					status.component.nav({
+						-- add some padding for the percentage provider
+						percentage = { padding = { right = 1 } },
+						-- disable all other providers
+						ruler = { padding = { left = 1 } },
+						hl = status.hl.get_attributes("file_info"),
+						scrollbar = false,
+						-- use no separator and define the background color
+						surround = { separator = "none", color = "file_info_bg" },
+					}),
+					status.component.builder({
+						{ provider = "" },
+						surround = { separator = "right_only", color = "file_info_bg" },
+					}),
+				},
+				status.component.builder({ provider = " " }),
 				status.component.builder({
 					{
 						provider = function()
 							local time = os.date("%H:%M:%S") -- show hour and minute in 24 hour format
 							---@cast time string
-							return status.utils.stylize("󰥔 " .. time)
+							return status.utils.stylize(" " .. time)
 						end,
 					},
 					update = { -- update should happen when the mode has changed as well as when the time has changed
