@@ -1,7 +1,7 @@
 return {
 	"Eandrju/cellular-automaton.nvim",
-	keys = "<leader>fun",
+	keys = "<leader>F",
 	config = function()
-		vim.keymap.set("n", "<leader>fun", "<cmd>CellularAutomaton make_it_rain<CR>")
+		vim.keymap.set("n", "<leader>F", "<cmd>CellularAutomaton make_it_rain<CR>")
 	end,
 }

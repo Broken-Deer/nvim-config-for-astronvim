@@ -1,8 +1,18 @@
-# AstroNvim Template
+# AstroNvim Configuration
 
 **NOTE:** This is for AstroNvim v4+
 
-A template for getting started with [AstroNvim](https://github.com/AstroNvim/AstroNvim)
+## ⚡ Requirements
+
+- [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+- [Tree-sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md)
+- Nodejs
+- Python
+- [Yazi](https://github.com/sxyazi/yazi/releases)
+- [ripgrep](https://github.com/BurntSushi/ripgrep/releases)
+- [lazygit](https://github.com/jesseduffield/lazygit/releases)
+- [bottom](https://github.com/ClementTsang/bottom/releases)
+- [go DiskUsage()](https://github.com/dundee/gdu/releases)
 
 ## 🛠️ Installation
 
@@ -15,20 +25,32 @@ mv ~/.local/state/nvim ~/.local/state/nvim.bak
 mv ~/.cache/nvim ~/.cache/nvim.bak
 ```
 
-#### Create a new user repository from this template
-
-Press the "Use this template" button above to create a new repository to store your user configuration.
-
-You can also just clone this repository directly if you do not want to track your user configuration in GitHub.
-
 #### Clone the repository
 
 ```shell
-git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
+git clone https://github.com/Broken-Deer/nvim-config ~/.config/nvim
 ```
 
 #### Start Neovim
 
 ```shell
 nvim
+```
+
+## After Installation
+
+- Run `:checkhealth`
+
+## Mappings
+
+### Type `tx` and input some text
+
+`tx Hello<Enter>`
+
+```
+ _   _      _ _
+| | | | ___| | | ___
+| |_| |/ _ \ | |/ _ \
+|  _  |  __/ | | (_) |
+|_| |_|\___|_|_|\___/
 ```

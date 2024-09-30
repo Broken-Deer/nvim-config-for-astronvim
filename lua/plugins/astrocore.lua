@@ -10,11 +10,11 @@ return {
 		-- Configure core features of AstroNvim
 		features = {
 			large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-			autopairs = true, -- enable autopairs at start
-			cmp = true, -- enable completion at start
-			diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-			highlighturl = true, -- highlight URLs at start
-			notifications = true, -- enable notifications at start
+			autopairs = true,                              -- enable autopairs at start
+			cmp = true,                                    -- enable completion at start
+			diagnostics_mode = 3,                          -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+			highlighturl = true,                           -- highlight URLs at start
+			notifications = true,                          -- enable notifications at start
 		},
 		-- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
 		diagnostics = {
@@ -23,14 +23,14 @@ return {
 		},
 		-- vim options can be configured here
 		options = {
-			opt = { -- vim.opt.<key>
+			opt = {              -- vim.opt.<key>
 				relativenumber = true, -- sets vim.opt.relativenumber
-				number = true, -- sets vim.opt.number
-				spell = false, -- sets vim.opt.spell
+				number = true,     -- sets vim.opt.number
+				spell = false,     -- sets vim.opt.spell
 				scrolloff = 3,
 				sidescrolloff = 3,
 				signcolumn = "yes", -- sets vim.opt.signcolumn to yes
-				wrap = false, -- sets vim.opt.wrap
+				wrap = false,   -- sets vim.opt.wrap
 				showcmd = true,
 			},
 		},
@@ -41,56 +41,8 @@ return {
 			n = {
 				-- second key is the lefthand side of the map
 
-				-- navigate buffer tabs
-				["]b"] = {
-					function()
-						require("astrocore.buffer").nav(vim.v.count1)
-					end,
-					desc = "Next buffer",
-				},
-				["[b"] = {
-					function()
-						require("astrocore.buffer").nav(-vim.v.count1)
-					end,
-					desc = "Previous buffer",
-				},
-
-				-- mappings seen under group name "Buffer"
-				["<Leader>bd"] = {
-					function()
-						require("astroui.status.heirline").buffer_picker(function(bufnr)
-							require("astrocore.buffer").close(bufnr)
-						end)
-					end,
-					desc = "Close buffer from tabline",
-				},
-
-				-- tables with just a `desc` key will be registered with which-key if it's installed
-				-- this is useful for naming menus
-				["<Leader>b"] = { desc = "Buffers" },
-
 				-- setting a mapping to false will disable it
 				-- ["<C-S>"] = false,
-				["<Leader>c"] = {
-					function()
-						local bufs = vim.fn.getbufinfo({ buflisted = 1 })
-						require("astrocore.buffer").close(0)
-						if require("astrocore").is_available("alpha-nvim") and not bufs[2] then
-							require("alpha").start()
-						end
-					end,
-					desc = "Close buffer",
-				},
-				["<C-w>"] = {
-					function()
-						local bufs = vim.fn.getbufinfo({ buflisted = 1 })
-						require("astrocore.buffer").close(0)
-						if require("astrocore").is_available("alpha-nvim") and not bufs[2] then
-							require("alpha").start()
-						end
-					end,
-					desc = "Close buffer",
-				},
 				["`"] = { "~" },
 				-- Neovide full screen
 				["<F11>"] = { "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
@@ -107,7 +59,6 @@ return {
 				["H"] = { "0" },
 				["L"] = { "$" },
 				["c,."] = { "c%" },
-				["<Leader>sw"] = { "<cmd>set wrap<CR>" },
 				["<C-A>"] = { "ggVG" },
 				["<A-o>"] = { "o<esc>k$" },
 				-- Windows
@@ -146,13 +97,13 @@ return {
 				-- ["k"] = { "i" },
 				-- ["K"] = { "I" },
 
-				-- Buffers FIXME:
-				-- ["<C-W>"] = { "<Leader>c" },
-
 				-- Others
-				-- ["<Leader>sw"] = { "<cmd>set wrap<CR>" },
 				-- ["<C-A>"] = { "ggVG" },
 				-- ["J"] = { "K" },
+			},
+			t = {
+				["<a-esc>"] = { "<c-\\><c-n><c-w>q" },
+				["<c-esc>"] = { "<c-\\><c-n>l" },
 			},
 			v = {
 				["`"] = { "~" },
