@@ -57,7 +57,7 @@ return {
 			"  ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
 			"  ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
 			"                                    ",
-			"                         You did it!",
+			"                 YOU CAN (NOT) REDO.",
 		}
 		dashboard.config.layout = {
 			{ type = "padding", val = vim.fn.max({ 2, vim.fn.floor(vim.fn.winheight(0) * 0.2) }) },

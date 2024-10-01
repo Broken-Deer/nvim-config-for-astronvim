@@ -25,8 +25,8 @@ return {
 		-- overrides `require("mason-null-ls").setup(...)`
 		opts = {
 			ensure_installed = {
-				"prettier",
-				"stylua",
+				-- "prettier",
+				-- "stylua",
 				-- add more arguments for adding more null-ls sources
 			},
 		},

@@ -81,12 +81,24 @@ return {
 		mappings = {
 			n = {
 				-- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
+				["gd"] = {
+					require("telescope.builtin").lsp_definitions,
+					desc = "(G)oto (D)efinition of current symbol",
+				},
 				gD = {
 					function()
 						vim.lsp.buf.declaration()
 					end,
 					desc = "Declaration of current symbol",
 					cond = "textDocument/declaration",
+				},
+				["grr"] = {
+					require("telescope.builtin").lsp_references,
+					desc = "(G)oto (R)eferences",
+				},
+				["gI"] = {
+					require("telescope.builtin").lsp_implementations,
+					desc = "(G)oto (I)mplementation",
 				},
 				["<Leader>uY"] = {
 					function()
