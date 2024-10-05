@@ -40,17 +40,3 @@ nvim
 ## After Installation
 
 - Run `:checkhealth`
-
-## Mappings
-
-### Type `tx` and input some text
-
-`tx Hello<Enter>`
-
-```
- _   _      _ _
-| | | | ___| | | ___
-| |_| |/ _ \ | |/ _ \
-|  _  |  __/ | | (_) |
-|_| |_|\___|_|_|\___/
-```
