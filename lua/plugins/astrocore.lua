@@ -10,11 +10,11 @@ return {
 		-- Configure core features of AstroNvim
 		features = {
 			large_buf = { size = 1024 * 256, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-			autopairs = true,                              -- enable autopairs at start
-			cmp = true,                                    -- enable completion at start
-			diagnostics_mode = 3,                          -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-			highlighturl = true,                           -- highlight URLs at start
-			notifications = true,                          -- enable notifications at start
+			autopairs = true, -- enable autopairs at start
+			cmp = true, -- enable completion at start
+			diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+			highlighturl = true, -- highlight URLs at start
+			notifications = true, -- enable notifications at start
 		},
 		-- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
 		diagnostics = {
@@ -23,14 +23,14 @@ return {
 		},
 		-- vim options can be configured here
 		options = {
-			opt = {              -- vim.opt.<key>
+			opt = { -- vim.opt.<key>
 				relativenumber = true, -- sets vim.opt.relativenumber
-				number = true,     -- sets vim.opt.number
-				spell = false,     -- sets vim.opt.spell
+				number = true, -- sets vim.opt.number
+				spell = false, -- sets vim.opt.spell
 				scrolloff = 3,
 				sidescrolloff = 3,
 				signcolumn = "yes", -- sets vim.opt.signcolumn to yes
-				wrap = false,   -- sets vim.opt.wrap
+				wrap = false, -- sets vim.opt.wrap
 				showcmd = true,
 			},
 		},
@@ -147,6 +147,8 @@ return {
 				-- Qwerty Keymaps
 				["<c-h>"] = { "<esc>I" },
 				["<c-l>"] = { "<esc>A" },
+				["<C-K>"] = { "<esc>5<C-y>a" },
+				["<C-J>"] = { "<esc>5<C-e>a" },
 
 				-- Colemak Keymaps
 				-- ["<c-n>"] = { "<ESC>A" },
