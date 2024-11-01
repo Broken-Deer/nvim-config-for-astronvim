@@ -11,7 +11,7 @@ return {
 				"html",
 				"cssls",
 				"eslint",
-				"tsserver",
+				-- "tsserver",
 				"pylyzer",
 				"lua_ls",
 				"rust_analyzer",

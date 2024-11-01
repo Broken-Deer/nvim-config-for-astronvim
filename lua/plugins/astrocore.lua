@@ -44,8 +44,6 @@ return {
 				-- setting a mapping to false will disable it
 				-- ["<C-S>"] = false,
 				["`"] = { "~" },
-				-- Neovide full screen
-				["<F11>"] = { "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
 
 				-- Qwerty Keymaps
 				["<C-K>"] = { "5<C-y>" },
@@ -107,8 +105,6 @@ return {
 			},
 			v = {
 				["`"] = { "~" },
-				-- Neovide full screen
-				["<F11>"] = { "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
 
 				-- Qwerty Keymaps
 				["J"] = { "5j" },
@@ -141,8 +137,6 @@ return {
 			i = {
 				["<c-y>"] = { "<ESC>A {}<ESC>i<CR><ESC>ko" },
 				["<c-v>"] = { "<ESC>pa" },
-				-- Neovide full screen
-				["<F11>"] = { "<cmd>let g:neovide_fullscreen = !g:neovide_fullscreen<CR>" },
 
 				-- Qwerty Keymaps
 				["<c-h>"] = { "<esc>I" },
