@@ -1,3 +1,6 @@
+**I decided not to use astronvim anymore, so this repository is disabled**
+
+
 # AstroNvim Configuration
 
 **NOTE:** This is for AstroNvim v4+
